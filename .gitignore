@@ -1,0 +1,13 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# 学習用サンドボックス(各自の作業ファイルはコミットしない)
+tutorial/*
+!tutorial/README.md
+
+# macOS
+.DS_Store
