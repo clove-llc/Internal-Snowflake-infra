@@ -1,0 +1,36 @@
+# ユーザー定義。default_role ごとにグループ化する(NONE = default_role なし)。
+# name 以外のキーは省略可。省略時: login_name = name、default_secondary_roles_option = ALL、disabled = false
+# パスワード・公開鍵は Terraform では扱わない(users.tf の ignore_changes 参照)
+
+ACCOUNTADMIN:
+  - name: CLOVEADMIN
+    display_name: CLOVEADMIN
+    first_name: yoshitaka
+    last_name: araki
+    email: clove.admin@clove-llc.com
+    default_warehouse: COMPUTE_WH
+    default_secondary_roles_option: NONE
+
+  - name: DAISUKE_HARATO
+    display_name: DAISUKE_HARATO
+    email: daisuke.harato@gmail.com
+    default_warehouse: STREAMLIT_WH
+
+  - name: SUZUKAZU0301
+    display_name: SUZUKAZU0301
+    email: SUZUKAZU0301@GMAIL.COM
+
+  - name: YASUHIRO.TAKEMURA
+    display_name: YASUHIRO.TAKEMURA
+    email: YASUHIRO.TAKEMURA@CLOVE-LLC.COM
+    default_warehouse: STREAMLIT_WH
+
+  - name: YOSHITAKA.ARAKI
+    display_name: YOSHITAKA.ARAKI
+    email: YOSHITAKA.ARAKI@CLOVE-LLC.COM
+    default_warehouse: COMPUTE_WH
+
+NONE:
+  - name: TERRAFORM
+    email: kensuke.nakazawa@clove-llc.com
+    comment: TERRAFORM USER

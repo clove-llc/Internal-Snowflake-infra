@@ -30,15 +30,15 @@ state は当面ローカル。`*.tfstate` は git 管理外なので保管に注
 |---|---|---|
 | データベース | `databases.tf` | STANDARD の全10個(SNOWFLAKE / SNOWFLAKE_SAMPLE_DATA / USER$* は対象外) |
 | ウェアハウス | `warehouse.tf` | STREAMLIT_WH |
-| ユーザー | `users.tf` + `users.csv` | システムユーザー SNOWFLAKE を除く全ユーザー |
+| ユーザー | `users.tf` + `users.yaml` | システムユーザー SNOWFLAKE を除く全ユーザー |
 
-## ユーザー管理(users.csv)
+## ユーザー管理(users.yaml)
 
-ユーザーは `users.csv` の行として管理する。
+ユーザーは `users.yaml` で管理する。`default_role` ごとのグループ(段落)にエントリを置く形式で、`name` 以外のキーは省略可(既定値は users.yaml 冒頭のコメント参照)。
 
-- **追加**: 行を足して apply。パスワード・公開鍵は Terraform で扱わないため、初期認証情報の設定は別途行う
-- **変更**: 該当セルを書き換えて apply(default_role / default_warehouse / disabled など)
-- **削除**: 行を消して apply(**実ユーザーが DROP される**。plan で必ず確認)
+- **追加**: 付与したい default_role の段落にエントリを足して apply。パスワード・公開鍵は Terraform で扱わないため、初期認証情報の設定は別途行う
+- **変更**: 該当キーを書き換えて apply。段落間の移動 = default_role の変更
+- **削除**: エントリを消して apply(**実ユーザーが DROP される**。plan で必ず確認)
 - 公開鍵(rsa_public_key)と must_change_password 等の運用系属性は `ignore_changes` で管理対象外。各ユーザーが自分で登録・変更しても Terraform は関知しない
 
 ## 既存リソースの取り込み
