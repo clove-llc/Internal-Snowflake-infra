@@ -67,7 +67,7 @@ Terraform リソース名に環境名を入れないのは、同じコードを 
 ## リポジトリの TODO
 
 - [ ] リモートバックエンドの選定・設定
-- [ ] Terraform 用サービスユーザーの作成と権限設計ドキュメント
+- [x] Terraform 用サービスユーザー(TERRAFORM / SYSADMIN。environments/sandbox の README 参照)
 - [ ] `environments/dev` の実資材作成
 - [ ] CI(PR で自動 plan)の整備
 

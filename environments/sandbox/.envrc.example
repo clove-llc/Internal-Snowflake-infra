@@ -1,7 +1,8 @@
-# このファイルを .envrc にコピーし、自分の値に書き換えて `direnv allow` する
+# このファイルを .envrc にコピーし、鍵パスを自分の環境に合わせて `direnv allow` する
+# Terraform の実行は TERRAFORM ユーザー(SYSADMIN)で行う。秘密鍵は管理者から受け取る
 export SNOWFLAKE_ORGANIZATION_NAME="WFJVSLU"
 export SNOWFLAKE_ACCOUNT_NAME="VT27190"
-export SNOWFLAKE_USER="<ユーザー名>"
+export SNOWFLAKE_USER="TERRAFORM"
 export SNOWFLAKE_AUTHENTICATOR="SNOWFLAKE_JWT"
-export SNOWFLAKE_PRIVATE_KEY="$(cat $HOME/.snowflake/<秘密鍵>.p8)"
-export SNOWFLAKE_ROLE="ACCOUNTADMIN"
+export SNOWFLAKE_PRIVATE_KEY="$(cat $HOME/.snowflake/terraform_rsa_key.p8)"
+export SNOWFLAKE_ROLE="SYSADMIN"
