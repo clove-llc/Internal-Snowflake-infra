@@ -1,14 +1,23 @@
-# environments/sandbox — 検証環境
+# environments/sandbox — 検証アカウント
 
-チュートリアル演習で使う共有サンドボックスアカウントの資材。管理者が運用する。
+検証用 Snowflake アカウント(`WFJVSLU-VT27190`)の資材。受講者・チュートリアルとは無関係に、このアカウントのリソースを Terraform で管理する。
 
-## 管理対象
+## 接続設定
 
-- `TUTORIAL_LEARNER` ロール — 受講者用。アカウントレベルの `CREATE DATABASE` / `CREATE WAREHOUSE` / `CREATE ROLE` を持つ。受講者は自分で作ったオブジェクトの所有者になるため、演習内のグラント操作はこれだけで完結する
+キーペア認証。環境変数で渡す(コード・tfvars に認証情報を書かない)。
 
-## 適用手順(管理者)
+```bash
+export SNOWFLAKE_ORGANIZATION_NAME="WFJVSLU"
+export SNOWFLAKE_ACCOUNT_NAME="VT27190"
+export SNOWFLAKE_USER="DAISUKE_HARATO"
+export SNOWFLAKE_AUTHENTICATOR="SNOWFLAKE_JWT"
+export SNOWFLAKE_PRIVATE_KEY="$(cat $HOME/.snowflake/clove_dcc.p8)"
+export SNOWFLAKE_ROLE="ACCOUNTADMIN"
+```
 
-接続情報を環境変数で設定し(`SNOWFLAKE_ROLE=ACCOUNTADMIN`)、このディレクトリで:
+秘密鍵は dbt(docomo_event_sf の profiles.yml)と共用。ロールの ACCOUNTADMIN 常用は暫定で、サービスユーザー化は TODO(tutorial/docs/07)。
+
+## 適用手順
 
 ```bash
 terraform init
@@ -16,15 +25,15 @@ terraform plan
 terraform apply
 ```
 
-## 受講者の払い出し(当面は手動)
+state は当面ローカル。`*.tfstate` は git 管理外なので保管に注意する。
 
-```sql
-CREATE USER <名前> DEFAULT_ROLE = TUTORIAL_LEARNER;
-GRANT ROLE TUTORIAL_LEARNER TO USER <名前>;
+## 既存リソースの取り込み
+
+このアカウントには手作業で作られたリソースがある。Terraform 管理に入れる場合は、リソース定義を書いてから import する。
+
+```bash
+terraform import snowflake_database.harato HARATO
+terraform import snowflake_warehouse.streamlit STREAMLIT_WH
 ```
 
-公開鍵の登録(`ALTER USER ... SET RSA_PUBLIC_KEY`)は受講者が自分で行う(tutorial/docs/01)。受講者ユーザーの tf 化は TODO。
-
-## state
-
-当面ローカル(管理者1名運用のため)。`*.tfstate` は git 管理外なので、リモートバックエンド移行までは state ファイルの保管に注意する。
+import 後に `terraform plan` を実行し、差分が出なくなるまで定義を実環境に合わせること(合わせずに apply すると実環境が書き換わる)。

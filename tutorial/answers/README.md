@@ -20,4 +20,4 @@ terraform apply
 terraform destroy                       # 確認が済んだら必ず
 ```
 
-作られるリソースはすべて `TUTORIAL_` / `DEV_TUTORIAL_` プレフィックス。共有アカウントで apply する場合は、演習コードと同様に `TUTORIAL_` を `TUTORIAL_<名前>_` に読み替えること(workspaces/README)。自分の演習環境が残っている場合も名前が衝突するので、先に destroy してから実行する。
+作られるリソースはすべて `TUTORIAL_` / `DEV_TUTORIAL_` プレフィックス。自分の演習環境が残っている場合は名前が衝突するので、先に destroy してから実行する。
