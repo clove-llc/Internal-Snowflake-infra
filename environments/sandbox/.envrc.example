@@ -1,0 +1,7 @@
+# このファイルを .envrc にコピーし、自分の値に書き換えて `direnv allow` する
+export SNOWFLAKE_ORGANIZATION_NAME="WFJVSLU"
+export SNOWFLAKE_ACCOUNT_NAME="VT27190"
+export SNOWFLAKE_USER="<ユーザー名>"
+export SNOWFLAKE_AUTHENTICATOR="SNOWFLAKE_JWT"
+export SNOWFLAKE_PRIVATE_KEY="$(cat $HOME/.snowflake/<秘密鍵>.p8)"
+export SNOWFLAKE_ROLE="ACCOUNTADMIN"

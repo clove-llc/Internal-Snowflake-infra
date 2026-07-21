@@ -4,18 +4,15 @@
 
 ## 接続設定
 
-キーペア認証。環境変数で渡す(コード・tfvars に認証情報を書かない)。
+キーペア認証。環境変数で渡し、direnv で自動読み込みする(コード・tfvars に認証情報を書かない)。
 
 ```bash
-export SNOWFLAKE_ORGANIZATION_NAME="WFJVSLU"
-export SNOWFLAKE_ACCOUNT_NAME="VT27190"
-export SNOWFLAKE_USER="DAISUKE_HARATO"
-export SNOWFLAKE_AUTHENTICATOR="SNOWFLAKE_JWT"
-export SNOWFLAKE_PRIVATE_KEY="$(cat $HOME/.snowflake/clove_dcc.p8)"
-export SNOWFLAKE_ROLE="ACCOUNTADMIN"
+brew install direnv                      # 未導入の場合(~/.zshrc に hook 追記も必要)
+cp .envrc.example .envrc                 # 自分の値に書き換える
+direnv allow                             # このディレクトリに入ると自動で SNOWFLAKE_* が入る
 ```
 
-秘密鍵は dbt(docomo_event_sf の profiles.yml)と共用。ロールの ACCOUNTADMIN 常用は暫定で、サービスユーザー化は TODO(tutorial/docs/07)。
+`.envrc` は git 管理外。秘密鍵は dbt(docomo_event_sf の profiles.yml)と共用。ロールの ACCOUNTADMIN 常用は暫定で、サービスユーザー化は TODO(tutorial/docs/07)。
 
 ## 適用手順
 

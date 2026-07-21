@@ -5,5 +5,8 @@
 crash.log
 crash.*.log
 
+# direnv(接続情報は各自の .envrc に置く)
+.envrc
+
 # macOS
 .DS_Store
