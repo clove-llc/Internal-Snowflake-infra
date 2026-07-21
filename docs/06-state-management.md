@@ -27,7 +27,7 @@ terraform {
     bucket       = "clove-terraform-state"
     key          = "snowflake/dev/terraform.tfstate"
     region       = "ap-northeast-1"
-    use_lockfile = true
+    use_lockfile = true   # Terraform 1.10 以降
   }
 }
 ```

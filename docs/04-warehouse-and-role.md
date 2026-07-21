@@ -109,7 +109,7 @@ resource "snowflake_grant_privileges_to_account_role" "analyst_tables" {
 
 ## 5. plan を読んでから apply
 
-`terraform plan` で `Plan: 7 to add` になるはず(DB 1 + スキーマ 1 + WH 1 + ロール 1 + グラント 4 − 数えて合うか確認)。出力中の `(known after apply)` は「apply するまで確定しない値」の印で、参照でつながったリソースに現れる。
+`terraform plan` で `Plan: 8 to add` になるはず(DB 1 + スキーマ 1 + WH 1 + ロール 1 + グラント 4。数えて合うか確認)。出力中の `(known after apply)` は「apply するまで確定しない値」の印で、参照でつながったリソースに現れる。
 
 apply 後、Snowsight で確認:
 
