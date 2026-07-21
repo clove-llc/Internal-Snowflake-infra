@@ -6,12 +6,14 @@
 
 ```
 .
-├── docs/
-├── tutorial/                # 演習の作業場所(tutorial/<名前>/ 単位で PR)
-├── answers/                 # 演習の解答
+├── tutorial/
+│   ├── docs/
+│   ├── answers/             # 演習の解答
+│   └── workspaces/          # 演習の作業場所(workspaces/<名前>/ 単位で PR)
 ├── modules/                 # 再利用部品(社内標準が固まってから)
 │   └── database-with-roles/
-└── environments/            # 環境ごとのエントリポイント
+└── environments/            # 環境ごとのエントリポイント。1環境 = 1ディレクトリ = 1 state
+    ├── sandbox/             # 検証環境。演習用ロールを管理(整備済み)
     ├── dev/
     │   ├── main.tf
     │   ├── backend.tf       # 環境ごとに独立した state
@@ -64,7 +66,7 @@ Terraform リソース名に環境名を入れないのは、同じコードを 
 
 ## リポジトリの TODO
 
-- [ ] サンドボックスアカウントの整備(演習用ロールの権限設計、受講者ユーザーの払い出し手順)
+- [ ] 受講者ユーザー払い出しの tf 化(environments/sandbox。現状は手動 SQL)
 - [ ] リモートバックエンドの選定・設定
 - [ ] Terraform 用サービスユーザーの作成と権限設計ドキュメント
 - [ ] `environments/dev` の実資材作成

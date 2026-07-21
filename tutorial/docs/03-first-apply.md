@@ -2,7 +2,7 @@
 
 Snowflake にデータベースを1つ作り、変更し、壊す。サイクルを一周して plan の読み方まで身につけるのがこの章のゴール。
 
-作業場所は `tutorial/<自分の名前>/`([tutorial/README](../tutorial/README.md) のルールを先に読む)。共有アカウントのため、以降のコード例の `TUTORIAL_` は `TUTORIAL_<名前>_` に読み替えること。解答は [answers/03-first-apply](../answers/03-first-apply/)。
+作業場所は `tutorial/workspaces/<自分の名前>/`([workspaces/README](../workspaces/README.md) のルールを先に読む)。共有アカウントのため、以降のコード例の `TUTORIAL_` は `TUTORIAL_<名前>_` に読み替えること。解答は [answers/03-first-apply](../answers/03-first-apply/)。
 
 ## 1. main.tf を書く
 
