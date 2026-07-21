@@ -61,6 +61,8 @@ terraform state show snowflake_database.tutorial  # 属性の詳細
 
 ## 5. 演習
 
+期待される出力と解説は [answers/06-state-management](../answers/06-state-management/) にある。
+
 1. 04〜05章の環境を `terraform apply -var-file=dev.tfvars` で作る
 2. `terraform state list` と `terraform state show` で中身を見る
 3. Snowsight で `CREATE DATABASE MANUAL_DB;` を実行し、`terraform plan` に**何も出ない**ことを確認する — 「state にないものは関知しない」の実体験

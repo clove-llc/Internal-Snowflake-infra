@@ -53,6 +53,8 @@ Terraform リソース名に環境名を入れないのは、同じコードを 
 
 ## 卒業チェックリスト
 
+答え合わせは [answers/07-graduation-check.md](../answers/07-graduation-check.md)。
+
 - [ ] init / plan / apply / destroy を説明しながら実行できる
 - [ ] plan の `+` / `~` / `-` と `(known after apply)` を読める
 - [ ] リソース間参照を使って複数リソースを定義できる
