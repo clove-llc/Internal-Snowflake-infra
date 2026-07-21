@@ -9,7 +9,7 @@ brew install terraform
 terraform version   # v1.x が表示されればよい
 ```
 
-プロジェクトごとのバージョン切り替えが必要になったら `tfenv` を使うが、チュートリアルでは不要。
+リポジトリ直下の `.terraform-version` が動作確認済みバージョン(1.12.2)。`tfenv` 利用者は自動でこのバージョンに揃う。brew の最新版でも動く想定だが、挙動が合わないときはここに揃えること。
 
 ## 2. Snowflake アカウント
 
