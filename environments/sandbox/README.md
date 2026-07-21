@@ -27,13 +27,30 @@ terraform apply
 
 state は当面ローカル。`*.tfstate` は git 管理外なので保管に注意する。
 
+## 管理対象
+
+| 種別 | 定義 | 内容 |
+|---|---|---|
+| データベース | `databases.tf` | STANDARD の全10個(SNOWFLAKE / SNOWFLAKE_SAMPLE_DATA / USER$* は対象外) |
+| ウェアハウス | `warehouse.tf` | STREAMLIT_WH |
+| ユーザー | `users.tf` + `users.csv` | システムユーザー SNOWFLAKE を除く全ユーザー |
+
+## ユーザー管理(users.csv)
+
+ユーザーは `users.csv` の行として管理する。
+
+- **追加**: 行を足して apply。パスワード・公開鍵は Terraform で扱わないため、初期認証情報の設定は別途行う
+- **変更**: 該当セルを書き換えて apply(default_role / default_warehouse / disabled など)
+- **削除**: 行を消して apply(**実ユーザーが DROP される**。plan で必ず確認)
+- 公開鍵(rsa_public_key)と must_change_password 等の運用系属性は `ignore_changes` で管理対象外。各ユーザーが自分で登録・変更しても Terraform は関知しない
+
 ## 既存リソースの取り込み
 
-このアカウントには手作業で作られたリソースがある。Terraform 管理に入れる場合は、リソース定義を書いてから import する。
+手作業で作られたリソースを管理に入れる場合は、定義を書いてから import する。
 
 ```bash
 terraform import snowflake_database.harato HARATO
-terraform import snowflake_warehouse.streamlit STREAMLIT_WH
+terraform import 'snowflake_user.this["YAMADA.TARO"]' '"YAMADA.TARO"'
 ```
 
 import 後に `terraform plan` を実行し、差分が出なくなるまで定義を実環境に合わせること(合わせずに apply すると実環境が書き換わる)。
