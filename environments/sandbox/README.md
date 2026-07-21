@@ -89,6 +89,7 @@ state は当面ローカル(`terraform.tfstate`、git 管理外)。消えると 
 | データベース | `databases.tf` | STANDARD の全10個(SNOWFLAKE / SNOWFLAKE_SAMPLE_DATA / USER$* は対象外) |
 | ウェアハウス | `warehouse.tf` | STREAMLIT_WH |
 | ユーザー | `users.tf` + `users.yaml` | システムユーザー SNOWFLAKE を除く全6ユーザー |
+| ロール付与 | `grants_role.tf` + `grants_role.yaml` | ユーザーへのロール付与(GRANT ROLE ... TO USER) |
 
 ## ユーザー管理(users.yaml)
 
@@ -98,7 +99,15 @@ state は当面ローカル(`terraform.tfstate`、git 管理外)。消えると 
 - **変更**: 該当キーを書き換えて apply。段落間の移動 = default_role の変更
 - **削除**: エントリを消して apply(**実ユーザーが DROP される**。plan で必ず確認)
 - 公開鍵(rsa_public_key)と must_change_password 等の運用系属性は `ignore_changes` で管理対象外。各ユーザーが自分で登録・変更しても Terraform は関知しない
-- ロールの付与(GRANT ROLE)は手動運用。default_role に指定するロールは事前に付与しておくこと
+
+## ロール付与(grants_role.yaml)
+
+ロール付与は `grants_role.yaml`(ロール → 付与先ユーザーのリスト)で管理する。
+
+- **付与**: ロールの段落にユーザーを足して apply
+- **剥奪**: ユーザーを消して apply(plan で必ず確認)
+- users.yaml の default_role に対応する付与は必須。欠けている場合は plan が precondition エラーで止まる
+- ACCOUNTADMIN 等の上位ロールの付与・剥奪が権限エラーになる場合は、`GRANT MANAGE GRANTS ON ACCOUNT TO ROLE SYSADMIN;` を手動で実行する(セットアップ手順2に追加)
 
 ## 既存リソースの取り込み
 

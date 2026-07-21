@@ -26,6 +26,12 @@ resource "snowflake_user" "this" {
   disabled                       = try(each.value.disabled, false)
 
   lifecycle {
+    # default_role は付与済みロールでないと機能しない。grants_role.yaml との整合を強制する
+    precondition {
+      condition     = each.value.default_role == "NONE" || contains(try(local.grants_role[each.value.default_role], []), each.value.name)
+      error_message = "${each.value.name} の default_role (${each.value.default_role}) が grants_role.yaml で付与されていない。"
+    }
+
     # 公開鍵は各ユーザーが自分で登録・ローテーションする(Terraform で消さない)
     # must_change_password 以下は運用時に手動で操作する属性のため管理対象外
     ignore_changes = [

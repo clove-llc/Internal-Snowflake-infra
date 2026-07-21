@@ -1,4 +1,5 @@
 # ユーザー定義。default_role ごとにグループ化する(NONE = default_role なし)。
+# ロールの付与は grants_role.yaml で管理する(default_role に対応する付与も必須)
 # name 以外のキーは省略可。省略時: login_name = name、default_secondary_roles_option = ALL、disabled = false
 # パスワード・公開鍵は Terraform では扱わない(users.tf の ignore_changes 参照)
 
@@ -32,5 +33,4 @@ ACCOUNTADMIN:
 
 SYSADMIN:
   - name: TERRAFORM
-    email: kensuke.nakazawa@clove-llc.com
     comment: TERRAFORM USER

@@ -1,0 +1,20 @@
+# ロール付与(GRANT ROLE ... TO USER)。ロール → 付与先ユーザーのリスト。
+# エントリの追加 = GRANT、削除 = REVOKE(plan で必ず確認)
+# users.yaml のグループ(default_role)に対応する付与は必須。欠けると plan がエラーで止まる
+
+ACCOUNTADMIN:
+  - CLOVEADMIN
+  - DAISUKE_HARATO
+  - SUZUKAZU0301
+  - TERRAFORM # SYSADMIN 運用が安定したら外して apply(= REVOKE)
+  - YASUHIRO.TAKEMURA
+  - YOSHITAKA.ARAKI
+
+ORGADMIN:
+  - CLOVEADMIN
+
+SYSADMIN:
+  - TERRAFORM
+
+DBT_PROJECT_SAMPLE_ROLE:
+  - DAISUKE_HARATO
