@@ -1,6 +1,6 @@
 # 04. ウェアハウスとロール
 
-Snowflake 環境の基本セット(DB + スキーマ + ウェアハウス + ロール + グラント)を組み立てる。新しく学ぶのはリソース間の参照とファイル分割。模範解答は [answers/04-warehouse-and-role](../answers/04-warehouse-and-role/)。
+Snowflake 環境の基本セット(DB + スキーマ + ウェアハウス + ロール + グラント)を組み立てる。新しく学ぶのはリソース間の参照とファイル分割。解答は [answers/04-warehouse-and-role](../answers/04-warehouse-and-role/)。
 
 ## 1. ファイル分割のルール
 

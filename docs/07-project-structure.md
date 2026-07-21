@@ -1,4 +1,4 @@
-# 07. 実運用への一歩 — このリポジトリの構成方針
+# 07. 実運用の構成方針
 
 チュートリアルの内容を実環境の管理につなげる。この章は現時点では方針の宣言で、実資材の整備に伴い更新する。
 
@@ -8,7 +8,7 @@
 .
 ├── docs/
 ├── tutorial/                # 学習用サンドボックス(git 管理外)
-├── answers/                 # 演習の模範解答
+├── answers/                 # 演習の解答
 ├── modules/                 # 再利用部品(社内標準が固まってから)
 │   └── database-with-roles/
 └── environments/            # 環境ごとのエントリポイント
@@ -51,9 +51,9 @@ Terraform リソース名に環境名を入れないのは、同じコードを 
 3. merge 後に apply(将来 CI/CD から実行)
 4. Snowsight での手作業変更は原則禁止(06章)
 
-## 卒業チェックリスト
+## チェックリスト
 
-答え合わせは [answers/07-graduation-check.md](../answers/07-graduation-check.md)。
+答え合わせは [answers/07-checklist.md](../answers/07-checklist.md)。
 
 - [ ] init / plan / apply / destroy を説明しながら実行できる
 - [ ] plan の `+` / `~` / `-` と `(known after apply)` を読める

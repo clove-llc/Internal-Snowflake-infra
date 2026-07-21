@@ -1,6 +1,6 @@
 # 05. 変数と出力
 
-04章までは `TUTORIAL_DB` などの名前をすべて直書きしていた。この章で「同じコードを設定だけ変えて使い回す」道具を揃える。dev / prod の環境分離の土台になる。模範解答は [answers/05-variables](../answers/05-variables/)。
+04章までは `TUTORIAL_DB` などの名前をすべて直書きしていた。この章で「同じコードを設定だけ変えて使い回す」道具を揃える。dev / prod の環境分離の土台になる。解答は [answers/05-variables](../answers/05-variables/)。
 
 ## 1. variable — 入力の宣言
 

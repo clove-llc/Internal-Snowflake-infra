@@ -2,7 +2,7 @@
 
 Snowflake にデータベースを1つ作り、変更し、壊す。サイクルを一周して plan の読み方まで身につけるのがこの章のゴール。
 
-作業場所は `tutorial/`(git 管理外なので自由に使ってよい)。模範解答は [answers/03-first-apply](../answers/03-first-apply/)。
+作業場所は `tutorial/`(git 管理外なので自由に使ってよい)。解答は [answers/03-first-apply](../answers/03-first-apply/)。
 
 ## 1. main.tf を書く
 

@@ -70,4 +70,4 @@ terraform state show snowflake_database.tutorial  # 属性の詳細
 
 ---
 
-前: [05. 変数と出力](05-variables.md) / 次: [07. 実運用への一歩](07-project-structure.md)
+前: [05. 変数と出力](05-variables.md) / 次: [07. 実運用の構成方針](07-project-structure.md)
