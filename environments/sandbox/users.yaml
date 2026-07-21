@@ -30,7 +30,7 @@ ACCOUNTADMIN:
     email: YOSHITAKA.ARAKI@CLOVE-LLC.COM
     default_warehouse: COMPUTE_WH
 
-NONE:
+SYSADMIN:
   - name: TERRAFORM
     email: kensuke.nakazawa@clove-llc.com
     comment: TERRAFORM USER
