@@ -10,20 +10,15 @@
 │   ├── docs/
 │   ├── answers/             # 演習の解答
 │   └── workspaces/          # 演習の作業場所(workspaces/<名前>/ 単位で PR)
-├── modules/                 # 再利用部品(社内標準が固まってから)
-│   └── database-with-roles/
-└── environments/            # 環境ごとのエントリポイント。1環境 = 1ディレクトリ = 1 state
-    ├── sandbox/             # 検証アカウント(既存リソースを import 済み)
-    ├── dev/
-    │   ├── main.tf
-    │   ├── backend.tf       # 環境ごとに独立した state
-    │   └── terraform.tfvars
-    └── prod/
+├── snowflake/               # Snowflake 検証アカウントの資材(既存リソースを import 済み)
+├── aws/                     # AWS 資材(tfstate 用 S3 バケットなど)
+└── modules/                 # 再利用部品(社内標準が固まってから)
+    └── database-with-roles/
 ```
 
 方針は2つ。
 
-- **環境はディレクトリで分離する。** 05章で見たとおり 1 state = 1環境。tfvars の切り替えだけで dev / prod を出し分ける構成は、apply 先を取り違える事故と隣り合わせになるため採らない
+- **管理単位はディレクトリで分離する。** 05章で見たとおり 1 state = 1ディレクトリ。プロバイダ・アカウントごとにディレクトリを分け、tfvars の切り替えだけで apply 先を出し分ける構成は採らない(取り違え事故と隣り合わせのため)。Snowflake の環境が増えたら(本番用アカウントなど)ディレクトリを追加する
 - **モジュール化は急がない。** module は「resource の集まりに変数を付けて部品化したもの」で、`module "raw_db" { source = "../../modules/database-with-roles" ... }` のように呼び出す。強力だが、標準が固まる前に作ると抽象化が外れる。当面は resource を素直に並べる
 
 ## 命名規則
@@ -66,9 +61,8 @@ Terraform リソース名に環境名を入れないのは、同じコードを 
 
 ## リポジトリの TODO
 
-- [ ] リモートバックエンドの選定・設定
-- [x] Terraform 用サービスユーザー(TERRAFORM / SYSADMIN。environments/sandbox の README 参照)
-- [ ] `environments/dev` の実資材作成
+- [ ] リモートバックエンド(S3)への state 移行(aws/ の README 参照。資材は準備済み)
+- [x] Terraform 用サービスユーザー(TERRAFORM / SYSADMIN。snowflake/ の README 参照)
 - [ ] CI(PR で自動 plan)の整備
 
 ---

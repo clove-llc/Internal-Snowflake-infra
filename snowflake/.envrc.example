@@ -6,3 +6,8 @@ export SNOWFLAKE_USER="TERRAFORM"
 export SNOWFLAKE_AUTHENTICATOR="SNOWFLAKE_JWT"
 export SNOWFLAKE_PRIVATE_KEY="$(cat $HOME/.snowflake/terraform_rsa_key.p8)"
 export SNOWFLAKE_ROLE="SYSADMIN"
+
+# S3 バックエンド用(state の保存先)。アクセスキーは管理者から受け取る
+export AWS_ACCESS_KEY_ID="<アクセスキーID>"
+export AWS_SECRET_ACCESS_KEY="<シークレットアクセスキー>"
+export AWS_REGION="ap-northeast-1"

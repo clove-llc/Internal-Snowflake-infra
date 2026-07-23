@@ -1,4 +1,4 @@
-# environments/sandbox — 検証アカウント
+# snowflake — 検証アカウント
 
 検証用 Snowflake アカウント(`WFJVSLU-VT27190`)の資材。受講者・チュートリアルとは無関係に、このアカウントのリソースを Terraform で管理する。
 
@@ -86,7 +86,7 @@ state は当面ローカル(`terraform.tfstate`、git 管理外)。消えると 
 
 | 種別 | 定義 | 内容 |
 |---|---|---|
-| データベース | `databases.tf` | STANDARD の全10個(SNOWFLAKE / SNOWFLAKE_SAMPLE_DATA / USER$* は対象外) |
+| データベース | `databases.tf` | STANDARD の全9個(SNOWFLAKE / SNOWFLAKE_SAMPLE_DATA / USER$* は対象外) |
 | ウェアハウス | `warehouse.tf` | STREAMLIT_WH |
 | ユーザー | `users.tf` + `users.yaml` | システムユーザー SNOWFLAKE を除く全6ユーザー |
 | ロール付与 | `grants_role.tf` + `grants_role.yaml` | ユーザーへのロール付与(GRANT ROLE ... TO USER) |

@@ -1,0 +1,5 @@
+# このファイルを .envrc にコピーし、値を入れて `direnv allow` する
+# clove-llc アカウント(390402559560)の IAM ユーザーのアクセスキー
+export AWS_ACCESS_KEY_ID="<アクセスキーID>"
+export AWS_SECRET_ACCESS_KEY="<シークレットアクセスキー>"
+export AWS_REGION="ap-northeast-1"

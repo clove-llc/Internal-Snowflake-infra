@@ -41,7 +41,3 @@ resource "snowflake_database" "snowflake_learning_db" {
   name    = "SNOWFLAKE_LEARNING_DB"
   comment = "Created by Snowflake during account provisioning"
 }
-
-resource "snowflake_database" "userdb_d_p01_lak" {
-  name = "USERDB_D_P01_LAK"
-}
