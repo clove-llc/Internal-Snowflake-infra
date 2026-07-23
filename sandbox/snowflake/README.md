@@ -1,4 +1,4 @@
-# snowflake — 検証アカウント
+# sandbox/snowflake — 検証アカウント
 
 検証用 Snowflake アカウント(`WFJVSLU-VT27190`)の資材。受講者・チュートリアルとは無関係に、このアカウントのリソースを Terraform で管理する。
 

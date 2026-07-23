@@ -1,4 +1,4 @@
-# aws — AWS 資材
+# sandbox/aws — AWS 資材
 
 clove-llc の AWS アカウント(`390402559560`)の資材。現在の管理対象は Terraform state 用の S3 バケット(`clove-terraform-state`)のみ。
 
@@ -27,13 +27,13 @@ terraform apply
 
 ### 4. state の S3 移行
 
-バケットができたら、aws/ と snowflake/ の両方に backend 設定を追加して移行する。
+バケットができたら、sandbox/aws と sandbox/snowflake の両方に backend 設定を追加して移行する。
 
 ```hcl
 # それぞれの main.tf の terraform ブロック内に追加
 backend "s3" {
   bucket       = "clove-terraform-state"
-  key          = "aws/terraform.tfstate" # snowflake/ では "snowflake/terraform.tfstate"
+  key          = "sandbox/aws/terraform.tfstate" # snowflake 側は "sandbox/snowflake/terraform.tfstate"
   region       = "ap-northeast-1"
   use_lockfile = true
 }
