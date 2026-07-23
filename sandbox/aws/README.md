@@ -1,6 +1,6 @@
 # sandbox/aws — AWS 資材
 
-clove-llc の AWS アカウント(`390402559560`)の資材。現在の管理対象は Terraform state 用の S3 バケット(`clove-terraform-state`)のみ。
+clove-llc の AWS アカウント(`390402559560`)の資材。現在の管理対象は Terraform state 用の S3 バケット(`clove-llc-terraform-state`)のみ。
 
 ## セットアップ
 
@@ -54,7 +54,7 @@ terraform apply
 ```hcl
 # それぞれの main.tf の terraform ブロック内に追加
 backend "s3" {
-  bucket       = "clove-terraform-state"
+  bucket       = "clove-llc-terraform-state"
   key          = "sandbox/aws/terraform.tfstate" # snowflake 側は "sandbox/snowflake/terraform.tfstate"
   region       = "ap-northeast-1"
   use_lockfile = true
@@ -67,3 +67,5 @@ terraform plan                  # No changes を確認
 ```
 
 移行後、ローカルの `terraform.tfstate`(と `.backup`)は残骸なので、plan の確認が済んだら削除してよい。
+
+補足: Terraform 本体の S3 backend は `aws login` のセッションをプロファイル経由で読めない(provider より SDK が古い)。このため `.envrc` が `aws configure export-credentials` でセッションを環境変数に変換して渡している。backend で `No valid credential sources found` が出たら、`aws login --profile clove` 後にディレクトリへ入り直す(direnv の再評価で解決する)。

@@ -62,7 +62,7 @@ Terraform リソース名に環境名を入れないのは、同じコードを 
 
 ## リポジトリの TODO
 
-- [ ] リモートバックエンド(S3)への state 移行(sandbox/aws の README 参照。資材は準備済み)
+- [x] リモートバックエンド(S3 + ネイティブロック)への state 移行(sandbox/aws の README 参照)
 - [x] Terraform 用サービスユーザー(TERRAFORM / SYSADMIN。sandbox/snowflake の README 参照)
 - [ ] CI(PR で自動 plan)の整備
 

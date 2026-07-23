@@ -1,6 +1,13 @@
 terraform {
   required_version = ">= 1.10" # S3 ネイティブロック(use_lockfile)のため
 
+  backend "s3" {
+    bucket       = "clove-llc-terraform-state"
+    key          = "sandbox/aws/terraform.tfstate"
+    region       = "ap-northeast-1"
+    use_lockfile = true
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"

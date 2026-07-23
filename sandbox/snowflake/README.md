@@ -80,7 +80,7 @@ terraform plan   # No changes になればセットアップ完了
 
 コードを変更 → `terraform plan` で差分確認 → `terraform apply`。
 
-state は当面ローカル(`terraform.tfstate`、git 管理外)。消えると import のやり直しになるため扱いに注意する。リモートバックエンド移行は TODO(tutorial/docs/07)。
+state は S3(`clove-llc-terraform-state` / `sandbox/snowflake/terraform.tfstate`、バージョニング有効・S3 ネイティブロック)。backend の認証は `aws login` ベースで、`.envrc` が自動でセッションを環境変数に変換する(sandbox/aws の README 参照)。
 
 ## 管理対象
 

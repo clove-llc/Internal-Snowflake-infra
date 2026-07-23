@@ -2,3 +2,7 @@
 # 認証は aws login(ブラウザサインイン)。アクセスキーは使わない(README のセットアップ参照)
 export AWS_PROFILE="clove"
 export AWS_REGION="ap-northeast-1"
+
+# Terraform の S3 backend は aws login のセッションを直接読めないため、環境変数に変換して渡す
+# (未ログイン時は何もしない。aws login --profile clove を実行してから入り直す)
+eval "$(aws configure export-credentials --profile clove --format env 2>/dev/null)"

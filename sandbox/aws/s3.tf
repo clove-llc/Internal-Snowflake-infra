@@ -1,6 +1,6 @@
 # Terraform state 用バケット(snowflake/ と aws/ の両方の state を置く)
 resource "aws_s3_bucket" "tfstate" {
-  bucket = "clove-terraform-state"
+  bucket = "clove-llc-terraform-state"
 
   lifecycle {
     prevent_destroy = true # state の入れ物なので誤 destroy を禁止
